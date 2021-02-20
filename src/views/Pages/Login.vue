@@ -29,10 +29,6 @@
               <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
               <div class="btn-wrapper text-center">
                 <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="img/icons/common/github.svg"></span>
-                  <span class="btn-inner--text">Github</span>
-                </a>
-                <a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"><img src="img/icons/common/google.svg"></span>
                   <span class="btn-inner--text">Google</span>
                 </a>
@@ -43,7 +39,7 @@
                 <small>Or sign in with credentials</small>
               </div>
               <validation-observer v-slot="{handleSubmit}" ref="formValidator">
-                <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
+                <b-form role="form" @submit.prevent="handleSubmit(login)">
                   <base-input alternative
                               class="mb-3"
                               name="Email"
@@ -85,6 +81,8 @@
   </div>
 </template>
 <script>
+import firebase from 'firebase';
+
   export default {
     data() {
       return {
@@ -98,7 +96,23 @@
     methods: {
       onSubmit() {
         // this will be called only after form is valid. You can do api call here to login
-      }
+      },
+             login: function(e) {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.model.email, this.model.password)
+        .then(
+          user => {
+            // alert(`You are logged in as ${user.user.email}`);
+            window.localStorage.setItem('authenticated', true);
+            this.$router.push('/dashboard')
+          },
+          err => {
+            alert(err.message);
+          }
+        );
+      e.preventDefault();
+    }
     }
   };
 </script>

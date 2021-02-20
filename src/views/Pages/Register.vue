@@ -44,7 +44,7 @@
                 <small>Or sign up with credentials</small>
               </div>
               <validation-observer v-slot="{handleSubmit}" ref="formValidator">
-                <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
+                <b-form role="form" @submit.prevent="handleSubmit(register)">
                   <base-input alternative
                               class="mb-3"
                               prepend-icon="ni ni-hat-3"
@@ -96,6 +96,7 @@
   </div>
 </template>
 <script>
+import firebase from 'firebase';
 
   export default {
     name: 'register',
@@ -112,7 +113,23 @@
     methods: {
       onSubmit() {
         // this will be called only after form is valid. You can do an api call here to register users
-      }
+      },
+      register: function(e) {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.model.email, this.model.password)
+        .then(
+          user => {
+            // console.log(user);
+            alert(`Account Created for ${user.user.email}`);
+            this.$router.push('/login')
+          },
+          err => {
+            alert(err.message);
+          }
+        );
+      e.preventDefault();
+    },
     }
 
   };
