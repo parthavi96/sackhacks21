@@ -30,7 +30,18 @@ const routes = [
         path: '/food',
         name: 'food',
         component: () => import(/* webpackChunkName: "demo" */ '../views/food.vue')
-      },{
+      },
+      {
+        path: '/update',
+        name: 'update',
+        component: () => import(/* webpackChunkName: "demo" */ '../views/update.vue')
+      },
+      {
+        path: '/alert',
+        name: 'alert',
+        component: () => import(/* webpackChunkName: "demo" */ '../views/alert.vue')
+      },
+      {
         path: '/routeBus',
         name: 'routeBus',
         component: () => import(/* webpackChunkName: "demo" */ '../views/routeBus.vue')

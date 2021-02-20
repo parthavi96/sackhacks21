@@ -67,8 +67,8 @@
                       type="gradient-red"
                       sub-title="350,897"
                       class="mb-4">
-            <img src="../.././public/img/icons/dashboard/news.png" height="200" width="200">
-            <h2 class="h2 font-weight-bold mb-0">Latest Updates</h2>
+            <router-link :to="'update'"><img src="../.././public/img/icons/dashboard/news.png" height="200" width="200">
+            <h2 class="h2 font-weight-bold mb-0">Latest Updates</h2></router-link>
             <!-- <template slot="footer">
               <span class="text-success mr-2">3.48%</span>
               <span class="text-nowrap">Since last month</span>
@@ -80,8 +80,8 @@
                       type="gradient-red"
                       sub-title="350,897"
                       class="mb-4">
-            <img src="../.././public/img/icons/dashboard/sos.png" height="200" width="200">
-            <h2 class="h2 font-weight-bold mb-0">Emergency Contacts</h2>
+            <router-link :to="'alert'"><img src="../.././public/img/icons/dashboard/sos.png" height="200" width="200">
+            <h2 class="h2 font-weight-bold mb-0">Emergency Contacts</h2></router-link>
             <!-- <template slot="footer">
               <span class="text-success mr-2">3.48%</span>
               <span class="text-nowrap">Since last month</span>
