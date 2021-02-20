@@ -1,14 +1,14 @@
 <template>
   <div>
     <!-- Header -->
-    <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
+    <div class="header bg-gradient-warning py-7 py-lg-8 pt-lg-9">
       <b-container class="container">
-        <div class="header-body text-center mb-7">
+        <div class="header-body text-center">
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
               <h1 class="text-white">Create an account</h1>
-              <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for
-                free.</p>
+              <!-- <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for
+                free.</p> -->
             </b-col>
           </b-row>
         </div>
