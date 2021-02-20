@@ -1,5 +1,6 @@
 import DashboardLayout from '@/views/Layout/DashboardLayout.vue';
 import AuthLayout from '@/views/Pages/AuthLayout.vue';
+import {auth} from '../firebase'
 
 import NotFound from '@/views/NotFoundPage.vue';
 
@@ -8,6 +9,9 @@ const routes = [
     path: '/',
     redirect: 'dashboard',
     component: DashboardLayout,
+    meta:{
+      requireAuth:true
+    },
     children: [
       {
         path: '/dashboard',
@@ -67,6 +71,11 @@ const routes = [
         path: '/register',
         name: 'register',
         component: () => import(/* webpackChunkName: "demo" */ '../views/Pages/Register.vue')
+      },
+      {
+        path: '/logout',
+        name: 'logout',
+        component: () => import(/* webpackChunkName: "demo" */ '../views/Pages/Logout.vue')
       },
       { path: '*', component: NotFound }
     ]

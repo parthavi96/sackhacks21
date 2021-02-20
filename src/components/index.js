@@ -26,6 +26,8 @@ import BasePagination from './BasePagination.vue';
 
 import SidebarPlugin from './SidebarPlugin';
 
+import {auth} from '../firebase'
+
 export {
   BaseCheckbox,
   Badge,
