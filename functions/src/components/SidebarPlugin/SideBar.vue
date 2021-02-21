@@ -8,6 +8,7 @@
             </navbar-toggle-button>
             <router-link class="navbar-brand" to="/">
                 <img :src="logo" class="navbar-brand-img" alt="...">
+                <h2 class="h2 text-warning" style="font-size: 35px;font-weight: bold;font-family: Arial, Helvetica, sans-serif;">SmartSac</h2>
             </router-link>
        
             <slot name="mobile-right">

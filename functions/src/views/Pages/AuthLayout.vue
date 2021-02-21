@@ -9,7 +9,7 @@
     >
       <div slot="brand" class="navbar-wrapper">
         <b-navbar-brand to="/">
-          <img src="logo-white.png">
+          <img src="logoW.jpg">
         </b-navbar-brand>
       </div>
 

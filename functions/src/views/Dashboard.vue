@@ -9,7 +9,7 @@
                       sub-title="350,897"
                       class="mb-4">
             <router-link :to="'crime'"><img @click="open('crime')" src="../.././public/img/icons/dashboard/crime.png" height="200" width="200">
-            <h2 class="h2 font-weight-bold mb-0">Crime</h2>
+            <h2 class="h2 font-weight-bold mb-0">Crime Analysis</h2>
             </router-link>
             <!-- <template slot="footer">
               <span class="text-success mr-2">3.48%</span>
@@ -25,7 +25,7 @@
                       class="mb-4">
             <router-link :to="'food'">
             <img src="../.././public/img/icons/dashboard/food.png" height="200" width="200">
-            <h2 class="h2 font-weight-bold mb-0">Food</h2></router-link>
+            <h2 class="h2 font-weight-bold mb-0">Food Donation</h2></router-link>
             <!-- <template slot="footer">
               <span class="text-success mr-2">3.48%</span>
               <span class="text-nowrap">Since last month</span>
@@ -81,7 +81,7 @@
                       sub-title="350,897"
                       class="mb-4">
             <router-link :to="'alert'"><img src="../.././public/img/icons/dashboard/sos.png" height="200" width="200">
-            <h2 class="h2 font-weight-bold mb-0">Emergency Contacts</h2></router-link>
+            <h2 class="h2 font-weight-bold mb-0">Alerts</h2></router-link>
             <!-- <template slot="footer">
               <span class="text-success mr-2">3.48%</span>
               <span class="text-nowrap">Since last month</span>

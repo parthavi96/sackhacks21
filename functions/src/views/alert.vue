@@ -48,6 +48,14 @@
             </b-row>
             <b-row>
                 <b-col lg="6">
+                  <label for="loc">Category:</label>
+                  <b-select select id="loc" name="category">
+                    <option value="Theft">Theft</option>
+                    <option value="Assault">Assault</option>
+                    <option value="Murder">Murder</option>
+                    <option value="Hit-n-Run">Hit-n-Run</option>
+                  </b-select>
+
                     <!-- <base-input
               label="category"
               placeholder="category"
@@ -68,9 +76,7 @@
                 <base-header v-model="alert.category">Asault</base-header>
               </base-dropdown> -->
               </b-col>
-            </b-row>
-            <b-row>
-              <b-col lg="12">
+              <b-col lg="6">
                 <base-input
               label="Location"
               placeholder="Location"
@@ -112,6 +118,7 @@
                   <b-col lg="4">Date: {{i.date}}
                      <b-row>
                   <b-col>Time: {{i.time}}</b-col>
+                  <!-- <b-col>Category: {{i.category}}</b-col> -->
                 </b-row>
                 <!-- <b-row>
                   <b-col>Category: {{i.category}}</b-col>
@@ -170,11 +177,7 @@ import BaseHeader from '../components/BaseHeader.vue';
             simple: "2018-07-17"
           },
       db_alert:[],
-      cat:{
-      Robbery:false,
-        Murder:false,
-        Assault:false,
-        Other:false},
+      
       alert : {
         date:"",
         description:"",
@@ -223,6 +226,7 @@ import BaseHeader from '../components/BaseHeader.vue';
               )
               this.crimeForm = false
               // tlocation.reload();
+              window.location.reload();
       },
       getalert() {
         fb.alertCollection.get().then(res=>{
