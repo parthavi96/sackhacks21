@@ -35,41 +35,46 @@
               </b-col>
               
               <b-col lg="6">
-                <base-input
-              label="Date"
-              placeholder="date"
-              v-model="alert.date"
-            >
-            </base-input>
+                <base-input type="date" label="Date" v-model="alert.date" placeholder="date" id="start" name="trip-start"
+       min="1990-01-01" max="2021-12-31"></base-input>
+               
               </b-col>
               <b-col lg="6">
-                <base-input
-              label="Time"
-              placeholder="time"
-              v-model="alert.time"
-            >
+               
+            <base-input type="time" label="Time" v-model="alert.time" placeholder="time" name="appt"
+       min="00:00" max="23:00" required>
             </base-input>
               </b-col>
             </b-row>
             <b-row>
                 <b-col lg="6">
-                    <base-input
+                    <!-- <base-input
               label="category"
               placeholder="category"
               v-model="alert.category"
             >
-            </base-input> 
-            <base-dropdown>
+            </base-input>  -->
+            <!-- <label>Category:</label>
+            <base-checkbox type="radio" id="one" value="Robbery" v-model="alert.Robbery"><label for="one">Robbery</label></base-checkbox>
+            <base-checkbox type="radio" id="two" value="Murder" v-model="alert.Murder">
+            <label for="two">Murder</label></base-checkbox>
+            <base-checkbox type="radio" id="three" value="Assault" v-model="alert.Assault">
+            <label for="two">Assault</label></base-checkbox>
+            <base-checkbox type="radio" id="three" value="Other" v-model="alert.Other">
+            <label for="two">Other</label></base-checkbox> -->
+            <!-- <base-dropdown>
                 <base-header v-model="alert.category">Theft</base-header>
                 <base-header v-model="alert.category">Murder</base-header>
                 <base-header v-model="alert.category">Asault</base-header>
-              </base-dropdown>
+              </base-dropdown> -->
               </b-col>
-              <b-col lg="6">
+            </b-row>
+            <b-row>
+              <b-col lg="12">
                 <base-input
               label="Location"
               placeholder="Location"
-              v-model="alert.time"
+              v-model="alert.location"
             >
             </base-input>
               </b-col>
@@ -85,22 +90,40 @@
               </b-col>
             </b-row>
             <b-row>
-                <b-col>
+                <b-col lg="6">
         <base-button type="danger" @click="postalert" class="w-100">Submit</base-button>
+
+                </b-col>
+                <b-col lg="6">
+                <base-button class="w-100" @click="show">Show Alerts</base-button>
+
 
                 </b-col>
             </b-row>
             </b-form>
-        <base-button class="m-2" style="float:right" @click="show">Show Alerts</base-button>
 
           </div>
           <div v-else>
               <ul>
               <div v-for="i in db_alert" :key="i">
               <li>
-              <h2>{{i.subject}}</h2>
-                <h4>Date:{{i.date}}  Time:{{i.time}}</h4>
+                <b-row>
+                  <b-col lg="12"><h2>{{i.subject}}</h2></b-col>
+                  <b-col lg="4">Date: {{i.date}}
+                     <b-row>
+                  <b-col>Time: {{i.time}}</b-col>
+                </b-row>
+                <!-- <b-row>
+                  <b-col>Category: {{i.category}}</b-col>
+                  
+                </b-row> -->
+                  </b-col>
+                  
+                  <b-col lg="8" class="text-left">
                 <p>{{i.description}}</p>
+                  </b-col>
+                </b-row>
+               
               </li>
               <hr>
 
@@ -146,12 +169,18 @@ import BaseHeader from '../components/BaseHeader.vue';
             simple: "2018-07-17"
           },
       db_alert:[],
+      cat:{
+      Robbery:false,
+        Murder:false,
+        Assault:false,
+        Other:false},
       alert : {
         date:"",
         description:"",
         subject:"",
         category:"",
         time:"",
+        location:"",
         user_id:firebase.auth().currentUser.uid
       },
     }
@@ -167,6 +196,7 @@ import BaseHeader from '../components/BaseHeader.vue';
             this.crimeForm = false
         },
       postalert() {
+         
               fb.alertCollection.add(this.alert).then(
                 res =>{
                   alert("success")
@@ -174,7 +204,8 @@ import BaseHeader from '../components/BaseHeader.vue';
                   alert(err.message)
                 }
               )
-
+              this.crimeForm = false
+              // tlocation.reload();
       },
       getalert() {
         fb.alertCollection.get().then(res=>{

@@ -18,12 +18,20 @@
             </b-col>
 
           </b-row>
-          <b-row v-for="item in news" :key="item" align-v="center"  >
-            <h3>{{item.name}}</h3>
-          <img :src=item.image.thumbnail.contentUrl alt="" v-if="item.image">
-          <p>{{item.description}}</p>
-          <a :href=item.url target="_blank">Click For More</a>
-
+          <b-row v-for="item in news" :key="item" class="text-justified"  >
+              <b-col lg="12">
+            <h2 class="h2">{{item.name}}</h2></b-col>
+            <b-col lg=2>
+          <img :src=item.image.thumbnail.contentUrl width="100%" alt="" v-if="item.image">
+            </b-col>
+            <b-col lg="10">
+          <p >{{item.description}}
+          <a :href=item.url target="_blank">Click For More</a></p>
+            </b-col>
+            <b-col lg="12">
+          <hr>
+            </b-col>
+            
           </b-row>
           </card>
 
