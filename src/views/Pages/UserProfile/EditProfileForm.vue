@@ -31,10 +31,10 @@
         <b-row >
           <b-col lg="12">
             <label>Food Type:</label>
-            <base-checkbox type="radio" id="one" value="Dry" v-model="food.picked"><label for="one">Dry</label></base-checkbox>
-            <base-checkbox type="radio" id="two" value="Frozen" v-model="food.picked">
+            <base-checkbox type="radio" id="one" value="Dry" v-model="food.Dry"><label for="one">Dry</label></base-checkbox>
+            <base-checkbox type="radio" id="two" value="Frozen" v-model="food.Frozen">
             <label for="two">Frozen</label></base-checkbox>
-            <base-checkbox type="radio" id="three" value="Canned" v-model="food.picked">
+            <base-checkbox type="radio" id="three" value="Canned" v-model="food.Canned">
             <label for="two">Canned</label></base-checkbox>
           </b-col>
         </b-row>
@@ -55,12 +55,12 @@
               type="text"
               label="Description"
               placeholder="Description"
-              v-model="food.lastName"
+              v-model="food.description"
             >
             </base-input>
           </b-col>
         </b-row>
-        <b-button v-on:click="c += 1">Add Item</b-button>
+        <b-button v-on:click="addItem">Add Item</b-button>
       </div>
       <hr class="my-4">
 
@@ -144,22 +144,44 @@ export default {
     return {
       c: 1,
       submited: true,
+      res : [],
       food: {
         name:"",
-        picked:"",
+        Dry:false,
+        Frozen:false,
+        Canned:false,
         email: '',
-        // firstName: 'Mike',
         lastName: '',
         address: '',
-        city: 'New York',
-        country: 'USA',
+        city: '',
+        country: '',
         postalCode: '',
+        description:'',
         user_id:firebase.auth().currentUser.uid,
 
       }
     };
   },
   methods: {
+    addItem(){
+      this.c += 1
+      // this.res.push(this.food[0])
+      // this.food= {
+      //   name:"",
+      //   Dry:false,
+      //   Frozen:false,
+      //   Canned:false,
+      //   email: '',
+      //   lastName: '',
+      //   address: '',
+      //   city: '',
+      //   country: '',
+      //   postalCode: '',
+      //   description:'',
+      //   user_id:firebase.auth().currentUser.uid,
+
+      // }
+    },
     addFoodReq() {
       // this.submited = false;
       // alert('Your data: ' + JSON.stringify(this.user));
@@ -173,18 +195,6 @@ export default {
                 }
               )
     },
-    successFunction(data) {
-        alert("sdc")
-        var allRows = data.split(/\r?\n|\r/);
-        alert("successs",allRows)
-      },
-    loc(){
-      $.ajax({
-          url: 'food-bank.xlsx',
-          dataType: 'text',
-        }).done(this.successFunction);
-        
-    }
   }
 };
 
