@@ -4,7 +4,11 @@
     <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-gradient-warning">
       <!-- Card stats -->
 
-    
+    <b-row class="mb-4">
+        <b-col lg="12">
+          <base-button @click="toPred" class="w-100">Predict</base-button>
+        </b-col>
+      </b-row>
 
     <!--Charts-->
 
@@ -61,6 +65,8 @@
   // Tables
   import SocialTrafficTable from './Dashboard/SocialTrafficTable';
   import PageVisitsTable from './Dashboard/PageVisitsTable';
+  import BaseButton from '../components/BaseButton.vue';
+  import router from '../routes/router'
 
   export default {
     components: {
@@ -69,7 +75,8 @@
       BaseProgress,
       StatsCard,
       PageVisitsTable,
-      SocialTrafficTable
+      SocialTrafficTable,
+        BaseButton
     },
     data() {
       return {
@@ -106,7 +113,7 @@
       // this.initViz()
     },
     methods: {
-    initViz() {
+      initViz() {
     var containerDiv1 = document.getElementById("vizContainer1"),
     url1 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link";
     var containerDiv2 = document.getElementById("vizContainer2"),
@@ -127,19 +134,11 @@
     var viz6 = new tableau.Viz(containerDiv6, url6);
     // vizContainer1.style.height='400px'
     },
-      initBigChart(index) {
-        let chartData = {
-          datasets: [
-            {
-              label: 'Performance',
-              data: this.bigLineChart.allData[index]
-            }
-          ],
-          labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        };
-        this.bigLineChart.chartData = chartData;
-        this.bigLineChart.activeIndex = index;
+      toPred(){
+        router.push('predict')
       }
+  
+  
     },
     mounted() {
       this.initBigChart(0);
