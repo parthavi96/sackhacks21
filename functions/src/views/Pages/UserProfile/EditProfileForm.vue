@@ -42,6 +42,17 @@
           <b-col lg="12">
             <base-input
               type="text"
+              label="address"
+              placeholder="address"
+              v-model="food.location"
+            >
+            </base-input>
+          </b-col>
+        </b-row>
+        <b-row >
+          <b-col lg="12">
+            <base-input
+              type="text"
               label="Quantity"
               placeholder="Quantity"
               v-model="food.quantity"
@@ -60,7 +71,7 @@
             </base-input>
           </b-col>
         </b-row>
-        <b-button v-on:click="addItem">Add Item</b-button>
+        <!-- <b-button v-on:click="addItem">Add Item</b-button> -->
       </div>
       <hr class="my-4">
 
@@ -72,7 +83,7 @@
           <b-col md="6">
             <!-- <label>Address</label> -->
             <label for="loc">Location:</label>
-            <b-select select id="loc" name="location">
+            <b-select select id="loc" name="location" v-model="food.vendorloc">
               <option value="(916) 783-1989">Abundant Life Fellowship</option>
               <option value="(916) 381-5353">Capitol City Adventist Community Services</option>
               <option value="(916) 487-8684">Carmichael Adventist Community Services</option>
@@ -158,7 +169,7 @@
 import BaseProgress from '../../../components/BaseProgress.vue';
 import BaseCheckbox from '../../../components/Inputs/BaseCheckbox.vue';
 import BaseRadio from '../../../components/Inputs/BaseRadio.vue';
-
+import axios from 'axios'
 import firebase from "firebase"
 import * as fb from "../../../firebase"
 
@@ -183,7 +194,9 @@ export default {
         description:'',
         user_id:firebase.auth().currentUser.uid,
 
-      }
+      },
+      mobilenumber:'+19169343691'
+
     };
   },
   methods: {
@@ -211,7 +224,14 @@ export default {
       // alert('Your data: ' + JSON.stringify(this.user));
        fb.foodCollection.add(this.food).then(
                 res =>{
-                  alert("success")
+                  if (res) {
+                   var message = "New pickup arrived " + "at location " +this.food.location +" The Food is " + this.food.name + " Quantity " + this.food.quantity     
+                    axios.post('http://localhost:5000/sachacks2021/us-central1/app/sendFoodMessage',{"numbers":this.mobilenumber,"message":message}).then(res=>{
+                        console.log("success")
+                    },err=>{
+                      console.error("Error")
+                    })
+                  }
                   this.submited = false;
 
                 },err=>{

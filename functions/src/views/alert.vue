@@ -226,7 +226,7 @@ import BaseHeader from '../components/BaseHeader.vue';
               )
               this.crimeForm = false
               // tlocation.reload();
-              window.location.reload();
+              // window.location.reload();
       },
       getalert() {
         fb.alertCollection.get().then(res=>{
