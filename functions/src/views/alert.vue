@@ -148,7 +148,7 @@
 <script>
 import firebase from "firebase"
 import * as fb from "../firebase"
-
+import axios from 'axios'
 import BaseInput from '../components/Inputs/BaseInput.vue';
   import EditProfileForm from './Pages/UserProfile/EditProfileForm';
 import Tab from '../components/Tabs/Tab.vue';
@@ -164,6 +164,7 @@ import BaseHeader from '../components/BaseHeader.vue';
     },
     data() {
     return {
+        mobilenumber:[],
         crimeForm:false,
         dates: {
             simple: "2018-07-17"
@@ -189,16 +190,32 @@ import BaseHeader from '../components/BaseHeader.vue';
       // console.log(firebase.auth().currentUser.uid)
       this.getalert()
       console.log(JSON.stringify(this.db_alert))
-
+      this.getMobile()
     },
     methods:{
+       
         show(){
             this.crimeForm = false
+        },
+         getMobile() {
+          fb.userCollection.get().then(res=>{
+          res.docs.map(doc=>
+          this.mobilenumber.push(doc.data().phone))
+        
+        })
         },
       postalert() {
          
               fb.alertCollection.add(this.alert).then(
                 res =>{
+                  if (res) {
+                   var message = "new alert " + "activity reported on " +this.alert.date+ "at " +this.alert.time+ "for " +this.alert.subject       
+                    axios.post('http://localhost:5000/sachacks2021/us-central1/app/sendMessage',{"numbers":this.mobilenumber,"message":message}).then(res=>{
+                        console.log("success")
+                    },err=>{
+                      console.error("Error")
+                    })
+                  }
                   alert("success")
                 },err=>{
                   alert(err.message)

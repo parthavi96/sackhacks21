@@ -27,10 +27,12 @@ const firebaseConfig = {
 
   const alertCollection = db.collection('alert')
   const foodCollection = db.collection("food_request")
+  const userCollection = db.collection("user")
   export {
 
     db,
     auth,
     alertCollection,
-    foodCollection
+    foodCollection,
+    userCollection
   }

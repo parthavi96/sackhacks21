@@ -146,7 +146,7 @@
     methods: {
     initViz() {
     var containerDiv = document.getElementById("vizContainer"),
-    url = "http://public.tableau.com/views/RegionalSampleWorkbook/Storms";
+    url = "https://public.tableau.com/views/Book1_16138881262970/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link";
 
     var viz = new tableau.Viz(containerDiv, url);
     },

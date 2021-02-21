@@ -71,6 +71,15 @@
                               name="Password"
                               :rules="{required: true, min: 6}"
                               v-model="model.password">
+                  </base-input>          
+                  <base-input alternative
+                              class="mb-3"
+                              prepend-icon="ni ni-mobile-button"
+                              placeholder="number"
+                              type="number"
+                              name="number"
+                              :rules="{required: true}"
+                              v-model="model.number">
                   </base-input>
                   <div class="text-muted font-italic"><small>password strength: <span
                     class="text-success font-weight-700">strong</span></small></div>
@@ -97,7 +106,7 @@
 </template>
 <script>
 import firebase from 'firebase';
-
+import * as fb from "../../firebase"
   export default {
     name: 'register',
     data() {
@@ -106,7 +115,9 @@ import firebase from 'firebase';
           name: '',
           email: '',
           password: '',
-          agree: false
+          agree: false,
+          number:''
+
         }
       }
     },
@@ -121,7 +132,14 @@ import firebase from 'firebase';
         .then(
           user => {
             // console.log(user);
-            alert(`Account Created for ${user.user.email}`);
+            // alert(`Account Created for ${user.user.email}`);
+             fb.userCollection.add({'name':this.model.name,'phone':"+1"+this.model.number}).then(
+                res =>{
+                  alert("success")
+                },err=>{
+                  alert(err.message)
+                }
+              )
             this.$router.push('/login')
           },
           err => {
