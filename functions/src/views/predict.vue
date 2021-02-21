@@ -18,7 +18,7 @@
             </b-col>
           </b-row>
           
-          <div>
+          <div v-if="form">
             <b-form >
               
             <b-row>
@@ -60,13 +60,16 @@
             </b-row>
             <b-row>
                 <b-col lg="12">
-        <base-button type="danger" @click="postpred" class="w-100">Submit</base-button>
+            <base-button type="danger" @click="postpred" class="w-100">Submit</base-button>
 
                 </b-col>
               
             </b-row>
             </b-form>
 
+          </div>
+          <div v-else>
+            Prediction is - 
           </div>
           </card>
         </b-col>
@@ -99,7 +102,7 @@ export default {
     },
     data() {
     return {
-        
+        form:true,
       pred : {
         day:"",
         description:"",
@@ -115,7 +118,7 @@ export default {
     methods:{
        
       postpred() {
-          
+          this.form = false
       },
 
     }
