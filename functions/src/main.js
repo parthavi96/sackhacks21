@@ -26,6 +26,15 @@ import router from './routes/router';
 // plugin setup
 Vue.use(DashboardPlugin);
 
+import * as VueGoogleMaps from 'vue2-google-maps'
+ 
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE',
+  },
+ 
+})
+
 import {auth} from './firebase'
 
 

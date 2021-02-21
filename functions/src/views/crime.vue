@@ -1,5 +1,5 @@
 <template>
-  <div>
+  
 
     <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-gradient-warning">
       <!-- Card stats -->
@@ -7,84 +7,46 @@
     
 
     <!--Charts-->
-    <b-container fluid class="">
 
-      <b-row>
-        <!-- <b-col xl="8" class="mb-5 mb-xl-0">
-          <div id="vizContainer"></div>
-          <card type="default" header-classes="bg-transparent">
-            <b-row align-v="center" slot="header">
-              <b-col>
-                <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                <h5 class="h3 text-white mb-0">Sales value</h5>
-              </b-col>
-              <b-col>
-                <b-nav class="nav-pills justify-content-end">
-                  <b-nav-item
-                       class="mr-2 mr-md-0"
-                       :active="bigLineChart.activeIndex === 0"
-                       link-classes="py-2 px-3"
-                       @click.prevent="initBigChart(0)">
-                      <span class="d-none d-md-block">Month</span>
-                      <span class="d-md-none">M</span>
-                  </b-nav-item>
-                  <b-nav-item
-                    link-classes="py-2 px-3"
-                    :active="bigLineChart.activeIndex === 1"
-                    @click.prevent="initBigChart(1)"
-                  >
-                    <span class="d-none d-md-block">Week</span>
-                    <span class="d-md-none">W</span>
-                  </b-nav-item>
-                </b-nav>
-              </b-col>
-            </b-row>
-            <line-chart
-              :height="350"
-              ref="bigChart"
-              :chart-data="bigLineChart.chartData"
-              :extra-options="bigLineChart.extraOptions"
-            >
-            </line-chart>
-          </card>
+      <b-row class="mb-4">
+      
+        <b-col lg="12" >
+        <!-- <div id="vizContainer1" ></div> -->
+        <iframe width="100%" height="500px" scrolling="no" src="https://public.tableau.com/views/Book1_16138881262970/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link&:size=1208,1&:embed=y&:showVizHome=n&:bootstrapWhenNotified=y&:apiID=host12#navType=1&navSrc=Parse"></iframe>
         </b-col>
+      </b-row>
+      <b-row class="mb-4">
+        <b-col lg="6">
+        <!-- <div id="vizContainer2" style="height=100px;"></div> -->
+        <iframe width="100%" height="350px" scrolling="no" src="https://public.tableau.com/views/Book1_16138881262970/Dashboard4?:language=en-GB&:display_count=y&:origin=viz_share_link&:size=581,1&:embed=y&:showVizHome=n&:bootstrapWhenNotified=y&:apiID=host19#navType=1&navSrc=Parse"/>
+        </b-col>
+        <b-col lg="6">
+        <!-- <div id="vizContainer3" ></div> -->
+        <iframe width="100%" height="350px" scrolling="no" src="https://public.tableau.com/views/Book1_16138881262970/Dashboard3?:language=en-GB&:display_count=y&:origin=viz_share_link&:size=377,1&:embed=y&:showVizHome=n&:bootstrapWhenNotified=y&:apiID=host26#navType=1&navSrc=Parse"/>
+        </b-col>
+      </b-row>
+      <b-row class="mb-4">
+        <b-col >
+        <!-- <div id="vizContainer4" height="100px"></div> -->
+        <iframe width="100%" height="370px" scrolling="no" src="https://public.tableau.com/views/Book1_16138881262970/Dashboard2?:language=en-GB&:display_count=y&:origin=viz_share_link&:size=581,1&:embed=y&:showVizHome=n&:bootstrapWhenNotified=y&:apiID=host27#navType=1&navSrc=Parse"/>
+        </b-col>
+        
+        <b-col >
+        <!-- <div id="vizContainer5" height="100px"></div> -->
+        <iframe width="100%" height="370px" scrolling="no" src="https://public.tableau.com/views/Book1_16138881262970/Dashboard5?:language=en-GB&:display_count=y&:origin=viz_share_link&:size=581,1&:embed=y&:showVizHome=n&:bootstrapWhenNotified=y&:apiID=host27#navType=1&navSrc=Parse"/>
+        </b-col>
+      
 
-        <b-col xl="4" class="mb-5 mb-xl-0">
-          <card header-classes="bg-transparent">
-            <b-row align-v="center" slot="header">
-              <b-col>
-                <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                <h5 class="h3 mb-0">Total orders</h5>
-              </b-col>
-            </b-row>
-
-            <bar-chart
-              :height="350"
-              ref="barChart"
-              :chart-data="redBarChart.chartData"
-            >
-            </bar-chart>
-          </card>
-        </b-col> -->
-
-        <div id="vizContainer"></div>
-
+        <b-col>
+        <!-- <div id="vizContainer6" ></div> -->
+        <iframe width="100%" height="370px" scrolling="no" src="https://public.tableau.com/views/Book1_16138881262970/Dashboard6?:language=en-GB&:display_count=y&:origin=viz_share_link&:size=1145,1&:embed=y&:showVizHome=n&:bootstrapWhenNotified=y&:apiID=host29#navType=1&navSrc=Parse"/>
+        </b-col>
       </b-row>
       <!-- End charts-->
 
-      <!--Tables-->
-      <b-row class="mt-5">
-        <b-col xl="8" class="mb-5 mb-xl-0">
-          <page-visits-table></page-visits-table>
-        </b-col>
-        <b-col xl="4" class="mb-5 mb-xl-0">
-          <social-traffic-table></social-traffic-table>
-        </b-col>
-      </b-row>
-      <!--End tables-->
-    </b-container>
+     
 </base-header>
-  </div>
+  
 </template>
 <script>
   // Charts
@@ -141,14 +103,29 @@
       };
     },
     mounted() {
-      this.initViz()
+      // this.initViz()
     },
     methods: {
     initViz() {
-    var containerDiv = document.getElementById("vizContainer"),
-    url = "https://public.tableau.com/views/Book1_16138881262970/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link";
-
-    var viz = new tableau.Viz(containerDiv, url);
+    var containerDiv1 = document.getElementById("vizContainer1"),
+    url1 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link";
+    var containerDiv2 = document.getElementById("vizContainer2"),
+    url2 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard2?:language=en-GB&:display_count=y&:origin=viz_share_link";
+    var containerDiv3 = document.getElementById("vizContainer3"),
+    url3 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard3?:language=en-GB&:display_count=y&:origin=viz_share_link";
+    var containerDiv4 = document.getElementById("vizContainer4"),
+    url4 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard4?:language=en-GB&:display_count=y&:origin=viz_share_link";
+    var containerDiv5 = document.getElementById("vizContainer5"),
+    url5 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard5?:language=en-GB&:display_count=y&:origin=viz_share_link";
+    var containerDiv6 = document.getElementById("vizContainer6"),
+    url6 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard6?:language=en-GB&:display_count=y&:origin=viz_share_link";
+    var viz1 = new tableau.Viz(containerDiv1, url1);
+    var viz2 = new tableau.Viz(containerDiv2, url2);
+    var viz3 = new tableau.Viz(containerDiv3, url3);
+    var viz4 = new tableau.Viz(containerDiv4, url4);
+    var viz5 = new tableau.Viz(containerDiv5, url5);
+    var viz6 = new tableau.Viz(containerDiv6, url6);
+    // vizContainer1.style.height='400px'
     },
       initBigChart(index) {
         let chartData = {
@@ -176,3 +153,9 @@
   padding-right: 0px;
 }
 </style>
+<style scoped>
+iframe{
+  border-radius: 5px;
+}
+</style>
+

@@ -71,7 +71,31 @@
         <b-row>
           <b-col md="6">
             <!-- <label>Address</label> -->
-            <base-input
+            <label for="loc">Location:</label>
+            <b-select select id="loc" name="location">
+              <option value="(916) 783-1989">Abundant Life Fellowship</option>
+              <option value="(916) 381-5353">Capitol City Adventist Community Services</option>
+              <option value="(916) 487-8684">Carmichael Adventist Community Services</option>
+              <option value="(916) 483-9232">Carmichael Food Closet</option>
+              <option value="(916) 568-7606">Cathedral of Praise & Worship Center - Food Program</option>
+              <option value="(916) 761-5624">Central Downtown Food Basket</option>
+              <option value="(916) 419-7500">Sacramento County Department of Aging</option>
+              <option value="(916) 364-8973">Cordova Community Food Locker</option>
+              <option value="(916) 443-2646">Francis House</option>
+              <option value="(916) 422-4962">Daughters of Zion Enterpryz</option>
+              <option value="(916) 775-1479">Delta Food Bank and Community Services</option>
+              <option value="(916) 685-8453">Elk Grove Food Bank Services</option>
+              <option value="(916) 567-5220">Community Resource Project</option>
+              <option value="(916) 428-5290">Emergency Food Closet (SSIP)</option>
+              <option value="(916) 967-2838">Food and Clothes Closet - Orangevale 7th Day Adventist</option>
+              <option value="(916) 456-1980">Food Assistance - Sacramento Food Bank and Family Services</option>
+              <option value="(530) 622-3231">Green Valley Community Church - Food/Clothing</option>
+              <option value="(916) 331-1510">North Highlands Christian Food Ministry - Food Closet</option>
+              <option value="(916) 925-5313">Our Lady of Lourdes Church - Feed the Hungry Program</option>
+              <option value="(916) 874-3100">Department of Human Assistance</option>
+              <option value="(916) 983-0658">Powerhouse Ministries</option>
+            </b-select>
+            <!-- <base-input
               type="text"
               label="Address"
               placeholder="Home Address"
@@ -96,7 +120,7 @@
               placeholder="ZIP Code"
               v-model="food.postalCode"
             >
-            </base-input>
+            </base-input> -->
           </b-col>
           <b-col md="6" class="mb-4" style="float:right">
             <iframe width="100%" height="400" frameborder="0" scrolling="no" allowfullscreen src="https://arcg.is/1bKTvG"></iframe>

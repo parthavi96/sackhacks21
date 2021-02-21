@@ -1,1 +1,1 @@
-export const API_KEY = 'mapply.92cc0cdb57c3920409d17fbd2e48a108';
+export const API_KEY = 'AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE';
