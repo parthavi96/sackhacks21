@@ -10,7 +10,7 @@
 
     </b-row>
 
-    <b-form @submit.prevent="updateProfile" v-if="submited">
+    <b-form @submit.prevent="addFoodReq" v-if="submited">
           <div style="float:right;"><img src="./foodbank.png" height="400" width="400"/></div>
 
       <h6 class="heading-small text-muted mb-4">Food Details</h6>
@@ -22,7 +22,7 @@
               type="text"
               label="Item Name"
               placeholder="Item Name"
-              v-model="user.username"
+              v-model="food.name"
             >
             </base-input>
           </b-col>
@@ -31,10 +31,10 @@
         <b-row >
           <b-col lg="12">
             <label>Food Type:</label>
-            <base-checkbox type="radio" id="one" value="Dry" v-model="picked"><label for="one">Dry</label></base-checkbox>
-            <base-checkbox type="radio" id="two" value="Frozen" v-model="picked">
+            <base-checkbox type="radio" id="one" value="Dry" v-model="food.picked"><label for="one">Dry</label></base-checkbox>
+            <base-checkbox type="radio" id="two" value="Frozen" v-model="food.picked">
             <label for="two">Frozen</label></base-checkbox>
-            <base-checkbox type="radio" id="three" value="Canned" v-model="picked">
+            <base-checkbox type="radio" id="three" value="Canned" v-model="food.picked">
             <label for="two">Canned</label></base-checkbox>
           </b-col>
         </b-row>
@@ -44,7 +44,7 @@
               type="text"
               label="Quantity"
               placeholder="Quantity"
-              v-model="user.firstName"
+              v-model="food.quantity"
             >
             </base-input>
           </b-col>
@@ -55,7 +55,7 @@
               type="text"
               label="Description"
               placeholder="Description"
-              v-model="user.lastName"
+              v-model="food.lastName"
             >
             </base-input>
           </b-col>
@@ -75,26 +75,26 @@
               type="text"
               label="Address"
               placeholder="Home Address"
-              v-model="user.address"
+              v-model="food.address"
             ></base-input>
             <base-input
               type="text"
               label="City"
               placeholder="City"
-              v-model="user.city"
+              v-model="food.city"
             >
             </base-input>
             <base-input
               type="text"
               label="Country"
               placeholder="Country"
-              v-model="user.country"
+              v-model="food.country"
             >
             </base-input>
             <base-input
               label="Postal Code"
               placeholder="ZIP Code"
-              v-model="user.postalCode"
+              v-model="food.postalCode"
             >
             </base-input>
           </b-col>
@@ -135,15 +135,18 @@ import BaseProgress from '../../../components/BaseProgress.vue';
 import BaseCheckbox from '../../../components/Inputs/BaseCheckbox.vue';
 import BaseRadio from '../../../components/Inputs/BaseRadio.vue';
 
+import firebase from "firebase"
+import * as fb from "../../../firebase"
+
 export default {
   components: { BaseRadio, BaseCheckbox, BaseProgress },
   data() {
     return {
       c: 1,
       submited: true,
-      user: {
-        company: 'Creative Code Inc.',
-        // username: 'michael23',
+      food: {
+        name:"",
+        picked:"",
         email: '',
         // firstName: 'Mike',
         lastName: '',
@@ -151,14 +154,24 @@ export default {
         city: 'New York',
         country: 'USA',
         postalCode: '',
-        aboutMe: `Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
+        user_id:firebase.auth().currentUser.uid,
+
       }
     };
   },
   methods: {
-    updateProfile() {
-      this.submited = false;
+    addFoodReq() {
+      // this.submited = false;
       // alert('Your data: ' + JSON.stringify(this.user));
+       fb.foodCollection.add(this.food).then(
+                res =>{
+                  alert("success")
+                  this.submited = false;
+
+                },err=>{
+                  alert(err.message)
+                }
+              )
     },
     successFunction(data) {
         alert("sdc")

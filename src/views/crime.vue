@@ -10,7 +10,7 @@
     <b-container fluid class="">
 
       <b-row>
-        <b-col xl="8" class="mb-5 mb-xl-0">
+        <!-- <b-col xl="8" class="mb-5 mb-xl-0">
           <div id="vizContainer"></div>
           <card type="default" header-classes="bg-transparent">
             <b-row align-v="center" slot="header">
@@ -65,7 +65,10 @@
             >
             </bar-chart>
           </card>
-        </b-col>
+        </b-col> -->
+
+        <div id="vizContainer"></div>
+
       </b-row>
       <!-- End charts-->
 
@@ -137,10 +140,13 @@
         }
       };
     },
+    mounted() {
+      this.initViz()
+    },
     methods: {
     initViz() {
     var containerDiv = document.getElementById("vizContainer"),
-    url = "https://YOUR-SERVER/views/YOUR-VISUALIZATION";
+    url = "http://public.tableau.com/views/RegionalSampleWorkbook/Storms";
 
     var viz = new tableau.Viz(containerDiv, url);
     },

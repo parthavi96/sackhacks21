@@ -19,11 +19,10 @@
 
           </b-row>
           <b-row v-for="item in news" :key="item" align-v="center"  >
-      
-            <h3>{{item.title}}</h3>
-          <img :src=item.media alt="">
-          <p>{{item.summary}}</p>
-          <a :href=item.link target="_blank">Click For More</a>
+            <h3>{{item.name}}</h3>
+          <img :src=item.image.thumbnail.contentUrl alt="" v-if="item.image">
+          <p>{{item.description}}</p>
+          <a :href=item.url target="_blank">Click For More</a>
 
           </b-row>
           </card>
@@ -44,6 +43,7 @@
   import EditProfileForm from './Pages/UserProfile/EditProfileForm';
   // import UserCard from './Pages/UserProfile/UserCard.vue';
   import axios from 'axios';
+import { json } from 'd3';
   export default {
     components: {
       EditProfileForm,
@@ -61,20 +61,25 @@
       getNews() {
 axios({
     "method":"GET",
-    "url":"https://covid-19-news.p.rapidapi.com/v1/covid",
+    "url":"https://bing-news-search1.p.rapidapi.com/news/search",
     "headers":{
     "content-type":"application/octet-stream",
-    "x-rapidapi-host":"covid-19-news.p.rapidapi.com",
-    "x-rapidapi-key":"28aefdea65msha1c927b88f9e110p105d22jsnb5c235c0917e",
+    "x-bingapis-sdk":"true",
+    "x-rapidapi-host":"bing-news-search1.p.rapidapi.com",
+    "x-rapidapi-key":"aac1eb2f6fmsh18af0e0eb733d8fp149a4ejsn0d351c58c35d",
     "useQueryString":true
     },"params":{
-    "lang":"en",
-    "media":"True",
-    "q":"covid-19"
+    "q":"sacramento",
+    "freshness":"Day",
     }
     })
     .then((response)=>{
-      this.news = response.data.articles
+      this.news = response.data.value
+      // console.log("news",JSON.stringify(this.news))
+      for(var i=0;i<this.news.length;i++) {
+        
+        console.log(this.news[i].image)
+      }
     })
     .catch((error)=>{
       console.log(error)
