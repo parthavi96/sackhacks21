@@ -6,9 +6,6 @@
         <!-- Mask -->
         <span class="mask bg-gradient-warning opacity-8"></span>
         <b-row>
-        <!-- <b-col xl="4" class="order-xl-2 mb-5">
-          <user-card></user-card>
-        </b-col> -->
         <b-col xl="12" class="order-xl-1">
           <card>
             <b-row align-v="center" slot="header" >
@@ -23,46 +20,32 @@
           
           <div>
             <b-form >
-              <b-row>
-              <b-col lg="12">
-                <base-input
-              label="Subject"
-              placeholder="Title"
-              v-model="alert.subject"
-            >
-            </base-input>
-              </b-col>
               
-              <b-col lg="6">
-                <base-input type="date" label="Date" v-model="alert.date" placeholder="date" id="start" name="trip-start"
-       min="1990-01-01" max="2021-12-31"></base-input>
-               
-              </b-col>
-              <b-col lg="6">
-               
-            <base-input type="time" label="Time" v-model="alert.time" placeholder="time" name="appt"
-       min="00:00" max="23:00" required>
-            </base-input>
-              </b-col>
-            </b-row>
             <b-row>
                 <b-col lg="6">
-                  <label for="loc">Category:</label>
-                  <b-select select id="loc" name="category">
-                    <option value="Theft">Theft</option>
-                    <option value="Assault">Assault</option>
-                    <option value="Murder">Murder</option>
-                    <option value="Hit-n-Run">Hit-n-Run</option>
+                  <label for="day">Day:</label>
+                  <b-select select id="day" v-model="pred.day" name="category">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
                   </b-select>
 
               </b-col>
               <b-col lg="6">
-                <base-input
-              label="Location"
-              placeholder="Location"
-              v-model="alert.location"
-            >
-            </base-input>
+                  <label for="dis">District:</label>
+                  <b-select select id="dis" v-model="pred.dis" name="category">
+                    <option value="1">Northwest</option>
+                    <option value="2">Northeast</option>
+                    <option value="3">Central</option>
+                    <option value="4">Southwest</option>
+                    <option value="5">South</option>
+                    <option value="6">East</option>
+                  </b-select>
+
               </b-col>
             </b-row>
             <b-row>
@@ -70,14 +53,14 @@
                 <base-input
               label="Description"
               placeholder="description"
-              v-model="alert.description"
+              v-model="pred.description"
             >
             </base-input>
               </b-col>
             </b-row>
             <b-row>
                 <b-col lg="12">
-        <base-button type="danger" @click="postalert" class="w-100">Submit</base-button>
+        <base-button type="danger" @click="postpred" class="w-100">Submit</base-button>
 
                 </b-col>
               
@@ -85,10 +68,7 @@
             </b-form>
 
           </div>
-        
           </card>
-
-          <!-- <edit-profile-form></edit-profile-form> -->
         </b-col>
       </b-row>
         
@@ -109,85 +89,37 @@ import BaseInput from '../components/Inputs/BaseInput.vue';
   import EditProfileForm from './Pages/UserProfile/EditProfileForm';
 import Tab from '../components/Tabs/Tab.vue';
 import BaseHeader from '../components/BaseHeader.vue';
-  // import UserCard from './Pages/UserProfile/UserCard.vue';
-  export default {
+
+export default {
     components: {
       EditProfileForm,
         BaseInput,
         Tab,
         BaseHeader,
-      // UserCard
     },
     data() {
     return {
-        mobilenumber:[],
-        crimeForm:false,
-        dates: {
-            simple: "2018-07-17"
-          },
-      db_alert:[],
-      
-      alert : {
-        date:"",
+        
+      pred : {
+        day:"",
         description:"",
-        subject:"",
-        category:"",
-        time:"",
-        location:"",
+        dis:"",
         user_id:firebase.auth().currentUser.uid
       },
     }
   },
     mounted(){
       // console.log(firebase.auth().currentUser.uid)
-      this.getalert()
-      console.log(JSON.stringify(this.db_alert))
-      this.getMobile()
+
     },
     methods:{
        
-         getMobile() {
-          fb.userCollection.get().then(res=>{
-          res.docs.map(doc=>
-          this.mobilenumber.push(doc.data().phone))
-        
-        })
-        },
-      postalert() {
-         
-              fb.alertCollection.add(this.alert).then(
-                res =>{
-                  if (res) {
-                   var message = "new alert " + "activity reported on " +this.alert.date+ "at " +this.alert.time+ "for " +this.alert.subject       
-                    axios.post('http://localhost:5000/sachacks2021/us-central1/app/sendMessage',{"numbers":this.mobilenumber,"message":message}).then(res=>{
-                        console.log("success")
-                    },err=>{
-                      console.error("Error")
-                    })
-                  }
-                  alert("success")
-                },err=>{
-                  alert(err.message)
-                }
-              )
-              this.crimeForm = false
-              // tlocation.reload();
-              window.location.reload();
+      postpred() {
+          
       },
-      getalert() {
-        fb.alertCollection.get().then(res=>{
-          res.docs.map(doc=>
-          this.db_alert.push(doc.data()))
-        },err=>{
-          console.error(err)
-        })
-        console.log("alerts",this.db_alert)
-      }
+
     }
   };
 </script>
 <style scoped>
-ul{
-    list-style-type: none;
-}
-</style>
+

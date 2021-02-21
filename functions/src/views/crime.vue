@@ -113,6 +113,27 @@
       // this.initViz()
     },
     methods: {
+      initViz() {
+    var containerDiv1 = document.getElementById("vizContainer1"),
+    url1 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link";
+    var containerDiv2 = document.getElementById("vizContainer2"),
+    url2 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard2?:language=en-GB&:display_count=y&:origin=viz_share_link";
+    var containerDiv3 = document.getElementById("vizContainer3"),
+    url3 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard3?:language=en-GB&:display_count=y&:origin=viz_share_link";
+    var containerDiv4 = document.getElementById("vizContainer4"),
+    url4 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard4?:language=en-GB&:display_count=y&:origin=viz_share_link";
+    var containerDiv5 = document.getElementById("vizContainer5"),
+    url5 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard5?:language=en-GB&:display_count=y&:origin=viz_share_link";
+    var containerDiv6 = document.getElementById("vizContainer6"),
+    url6 = "https://public.tableau.com/views/Book1_16138881262970/Dashboard6?:language=en-GB&:display_count=y&:origin=viz_share_link";
+    var viz1 = new tableau.Viz(containerDiv1, url1);
+    var viz2 = new tableau.Viz(containerDiv2, url2);
+    var viz3 = new tableau.Viz(containerDiv3, url3);
+    var viz4 = new tableau.Viz(containerDiv4, url4);
+    var viz5 = new tableau.Viz(containerDiv5, url5);
+    var viz6 = new tableau.Viz(containerDiv6, url6);
+    // vizContainer1.style.height='400px'
+    },
       toPred(){
         router.push('predict')
       }
