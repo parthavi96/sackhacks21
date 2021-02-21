@@ -47,6 +47,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "demo" */ '../views/routeBus.vue')
       },
       {
+        path: '/predict',
+        name: 'predict',
+        component: () => import(/* webpackChunkName: "demo" */ '../views/predict.vue')
+      },
+      {
         path: '/icons',
         name: 'icons',
         component: () => import(/* webpackChunkName: "demo" */ '../views/Icons.vue')
