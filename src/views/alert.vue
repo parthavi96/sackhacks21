@@ -17,15 +17,15 @@
               <h3 class="mb-0">Alerts </h3>
             </b-col>
             <b-col cols="6" class="text-right">
-            <base-button type="danger" @click="postalert" >Report Crime</base-button>
+            <base-button type="danger" @click="crimeForm = true">Report Crime</base-button>
             
             </b-col>
           </b-row>
           
-          <div>
+          <div v-if="crimeForm">
             <b-form >
               <b-row>
-              <b-col lg="6">
+              <b-col lg="12">
                 <base-input
               label="Subject"
               placeholder="Title"
@@ -33,16 +33,7 @@
             >
             </base-input>
               </b-col>
-              <b-col lg="6">
-            <base-dropdown>
-                <base-button v-model="alert.category" slot="title" type="secondary" class="dropdown-toggle">
-                  Category
-                </base-button>
-                <a class="dropdown-item" href="#">Theft</a>
-                <a class="dropdown-item" href="#">Shooting</a>
-                <a class="dropdown-item" href="#">Other</a>
-              </base-dropdown>
-              </b-col>
+              
               <b-col lg="6">
                 <base-input
               label="Date"
@@ -61,8 +52,26 @@
               </b-col>
             </b-row>
             <b-row>
+                <b-col lg="6">
+                    <base-input
+              label="category"
+              placeholder="category"
+              v-model="alert.category"
+            >
+            </base-input> 
+            <base-dropdown>
+                <base-header v-model="alert.category">Theft</base-header>
+                <base-header v-model="alert.category">Murder</base-header>
+                <base-header v-model="alert.category">Asault</base-header>
+              </base-dropdown>
+              </b-col>
               <b-col lg="6">
-                
+                <base-input
+              label="Location"
+              placeholder="Location"
+              v-model="alert.time"
+            >
+            </base-input>
               </b-col>
             </b-row>
             <b-row>
@@ -70,12 +79,33 @@
                 <base-input
               label="Description"
               placeholder="description"
-              v-model="alert.desciption"
+              v-model="alert.description"
             >
             </base-input>
               </b-col>
             </b-row>
+            <b-row>
+                <b-col>
+        <base-button type="danger" @click="postalert" class="w-100">Submit</base-button>
+
+                </b-col>
+            </b-row>
             </b-form>
+        <base-button class="m-2" style="float:right" @click="show">Show Alerts</base-button>
+
+          </div>
+          <div v-else>
+              <ul>
+              <div v-for="i in db_alert" :key="i">
+              <li>
+              <h2>{{i.subject}}</h2>
+                <h4>Date:{{i.date}}  Time:{{i.time}}</h4>
+                <p>{{i.description}}</p>
+              </li>
+              <hr>
+
+              </div>
+              </ul>
           </div>
           </card>
 
@@ -98,15 +128,23 @@ import * as fb from "../firebase"
 
 import BaseInput from '../components/Inputs/BaseInput.vue';
   import EditProfileForm from './Pages/UserProfile/EditProfileForm';
+import Tab from '../components/Tabs/Tab.vue';
+import BaseHeader from '../components/BaseHeader.vue';
   // import UserCard from './Pages/UserProfile/UserCard.vue';
   export default {
     components: {
       EditProfileForm,
         BaseInput,
+        Tab,
+        BaseHeader,
       // UserCard
     },
     data() {
     return {
+        crimeForm:false,
+        dates: {
+            simple: "2018-07-17"
+          },
       db_alert:[],
       alert : {
         date:"",
@@ -125,6 +163,9 @@ import BaseInput from '../components/Inputs/BaseInput.vue';
 
     },
     methods:{
+        show(){
+            this.crimeForm = false
+        },
       postalert() {
               fb.alertCollection.add(this.alert).then(
                 res =>{
@@ -142,9 +183,13 @@ import BaseInput from '../components/Inputs/BaseInput.vue';
         },err=>{
           console.error(err)
         })
+        console.log("alerts",this.db_alert)
       }
     }
   };
 </script>
-<style>
+<style scoped>
+ul{
+    list-style-type: none;
+}
 </style>
