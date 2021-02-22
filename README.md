@@ -1,5 +1,6 @@
 # SmartSac
-### One stop solution
+### One stop solution for Sacramento Residents
+<img src="dashboard.PNG">
 
 ### [Live Demo](https://sachacks2021.web.app/#/login)
 
