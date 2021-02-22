@@ -39,27 +39,6 @@
 
         
         <sidebar-item
-                :link="{
-                  name: 'About Us',
-                  path: '/about',
-                  icon: 'ni ni-single-02 text-yellow'
-                }">
-        </sidebar-item>
-        <sidebar-item
-                :link="{
-                  name: 'FAQs',
-                  path: '/faq',
-                  icon: 'ni ni-bullet-list-67 text-red'
-                }">
-        </sidebar-item>
-        <sidebar-item
-                :link="{
-                  name: 'Contact us',
-                  path: '/faq',
-                  icon: 'ni ni-world text-green'
-                }">
-        </sidebar-item>
-        <sidebar-item
                   :link="{
                     name: 'Logout',
                     path: '/login',
